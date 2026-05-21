@@ -238,6 +238,7 @@ if st.button("🚀 [LM Studio 에이전트 분석 호출]"):
 평일(WEEKDAY)과 주말(WEEKEND)의 시청/플레이 디커플링 패턴을 인지하여 분석하라.
 특히 MORNING(출근길)에 발생한 유튜브 조회수 가속도와, GOLDEN/NIGHT(저녁~새벽)에 찍힌 스팀 새 리뷰 가머스 증가 속도 사이의 '시차 상관관계(Time-Lag Correlation)'를 추론하여 대중 바이럴이 진성 구매로 전환되었는지 판정해라.
 적발된 WATCH_ONLY 게임에 대해서는 단순 현상 나열에 그치지 말고 [인방 시청 인증 인게임 보상 이벤트 기획], [스트리머 참여형 커뮤니티 챌린지], [하위 유저 진입장벽 완화 패치 건의] 등 게임사가 트래픽을 플레이어로 되돌리기 위해 즉시 실행 가능한 '비즈니스 액션 플랜(Action Plan)'을 무조건 최소 2개 이상 구체적으로 제안해라.
+주의: 모든 게임에 대해 동일한 액션 플랜을 반복하는 행위를 절대 금지한다. 각 게임의 장르(FPS, RPG, Survival 등)와 타겟 유저 성향을 명확히 고려하여, 완전히 차별화되고 독창적인 비즈니스 솔루션을 게임별로 각각 다르게 도출해라.
 응답은 마크다운 형식으로 가독성 높게 작성해라.
 """
             user_prompt = f"현재 시계열 세그먼트: {selected_slot}\n현재 요일 타입: {selected_day_type}\n\n[최상위 10개 게임 매트릭스 데이터]\n{json.dumps(data_context, ensure_ascii=False, indent=2)}\n\n위 데이터를 바탕으로 분리형 시계열 인과관계 보고서를 작성해라."
@@ -283,7 +284,14 @@ if st.button("🚀 [LM Studio 에이전트 분석 호출]"):
                     action_plan = ""
                     if chzzk > (ccu * 0.4):
                         status = "🚨 **WATCH_ONLY (보는 게임 경보)**: 시청 화제성은 폭발적이나 실제 플레이 CCU 정체"
-                        action_plan = "\n    - 💡 **긴급 Action Plan 1**: 스트리머 시청자 대상 트위치/치지직 드롭스(Drops) 보상 이벤트 개최\n    - 💡 **긴급 Action Plan 2**: 뉴비 절단기 구간 하향 패치 및 주말 경험치 부스팅 적용"
+                        
+                        # 게임명 기반 동적 Action Plan 분기
+                        if game in ["Counter-Strike 2", "Apex Legends", "PUBG: BATTLEGROUNDS", "Valorant", "Rainbow Six Siege"]:
+                            action_plan = "\n    - 💡 **긴급 Action Plan 1**: 새벽 불법 핵(Cheating) 유저 상시 모니터링 시스템 및 신고 포상제 도입\n    - 💡 **긴급 Action Plan 2**: 상위 랭크 매칭(MMR) 스트레스 완화용 불이익 방어 카드 보상 지급"
+                        elif game in ["Palworld", "HELLDIVERS 2", "Rust", "Enshrouded", "Valheim", "ARK: Survival Evolved", "Minecraft", "Terraria"]:
+                            action_plan = "\n    - 💡 **긴급 Action Plan 1**: 신규 대규모 레이드 보스 및 커뮤니티 전용 멀티 서버 인프라 무료 증설\n    - 💡 **긴급 Action Plan 2**: 시청자 참여형 한정판 팰(Monster)/아이템 스킨 드롭스 및 복귀 유저 정착 팩 지급"
+                        else:
+                            action_plan = "\n    - 💡 **긴급 Action Plan 1**: 플랫폼 연동 실시간 인방 시청 인증 이벤트 및 인게임 재화 지급\n    - 💡 **긴급 Action Plan 2**: 주말 한정 경험치/골드 200% 가속 부스팅 버프 기획 수립"
                     elif views > 5000 and reviews > 50:
                         status = "🔥 **진성 구매 전환 가속 중**: 유튜브 출근길 바이럴이 저녁 스팀 실구매(리뷰)로 강하게 이어짐 (Time-Lag 상관관계 입증)"
                         
