@@ -50,9 +50,6 @@ trends_hourly_table = Table('game_trends_hourly', metadata,
     Column('trend_velocity_score', Float, nullable=True)
 )
 
-# --- 🚨 [긴급 데이터 초기화] 기존 더미 데이터 완전 삭제 (하드 드롭) ---
-metadata.drop_all(engine)
-
 # 테이블이 없으면 생성합니다.
 metadata.create_all(engine)
 
