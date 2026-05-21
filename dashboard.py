@@ -199,14 +199,20 @@ else:
 # 🚨 [라이브 서비스 위기 감지: WATCH_ONLY 경보판]
 # --------------------------------------------------------------------------
 if not df_latest_filtered.empty:
-    watch_only_games = df_latest_filtered[df_latest_filtered['chzzk_current_viewers'] > (df_latest_filtered['cumulative_ccu'] * 0.4)]
+    # 수집 오류 방지 및 정밀 필터링 로직 보완
+    cond_high_viewers = df_latest_filtered['chzzk_current_viewers'] > 10000
+    cond_ratio = (df_latest_filtered['cumulative_ccu'] >= 5000) & (df_latest_filtered['chzzk_current_viewers'] > (df_latest_filtered['cumulative_ccu'] * 0.4))
+    watch_only_games = df_latest_filtered[cond_high_viewers | cond_ratio]
+    
+    st.markdown("---")
     if not watch_only_games.empty:
-        st.markdown("---")
         st.subheader("🚨 라이브 서비스 위기 감지: WATCH_ONLY 경보판")
-        for _, row in watch_only_games.iterrows():
-            st.error(f"**[{row['game_name']}] WATCH_ONLY 상태 진입!** (치지직 시청자: {int(row['chzzk_current_viewers']):,}명 / 스팀 CCU: {int(row['cumulative_ccu']):,}명) - 유저들이 플레이를 포기하고 인방 시청으로만 소비하고 있습니다. 긴급 비즈니스 액션이 필요합니다.")
+        st.error(f"🚨 현재 {len(watch_only_games)}개의 게임에서 WATCH_ONLY 위기가 감지되었습니다.")
+        
+        with st.expander("🔍 위기 감지 개체 전체 리스트 및 세부 지표 확인"):
+            for _, row in watch_only_games.iterrows():
+                st.warning(f"**[{row['game_name']}] WATCH_ONLY 상태 진입!** (치지직 시청자: {int(row['chzzk_current_viewers']):,}명 / 스팀 CCU: {int(row['cumulative_ccu']):,}명) - 유저들이 플레이를 포기하고 인방 시청으로만 소비하고 있습니다. 긴급 비즈니스 액션이 필요합니다.")
     else:
-        st.markdown("---")
         st.success("✅ 현재 WATCH_ONLY 위기 징후가 감지된 게임이 없습니다. 모든 게임이 건강한 플레이 비율을 유지 중입니다.")
 
 # --------------------------------------------------------------------------
