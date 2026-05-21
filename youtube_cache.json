@@ -1,0 +1,23 @@
+{
+    "Palworld": {
+        "collected_at": "2026-05-20T14:51:27.209712",
+        "data": {
+            "search_volume_score": 100,
+            "recent_videos_count": 50
+        }
+    },
+    "Enshrouded": {
+        "collected_at": "2026-05-20T14:51:28.682712",
+        "data": {
+            "search_volume_score": 100,
+            "recent_videos_count": 50
+        }
+    },
+    "Rust": {
+        "collected_at": "2026-05-20T14:51:30.036873",
+        "data": {
+            "search_volume_score": 100,
+            "recent_videos_count": 50
+        }
+    }
+}

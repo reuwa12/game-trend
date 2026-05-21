@@ -1,0 +1,29 @@
+{
+    "collected_at": "2026-05-20T14:37:02.299852",
+    "games": {
+        "Palworld": {
+            "steam_appid": "2394300",
+            "current_ccu": 28450,
+            "youtube_trend": {
+                "search_volume_score": 88,
+                "recent_videos_count": 145
+            }
+        },
+        "Enshrouded": {
+            "steam_appid": "1203620",
+            "current_ccu": 12100,
+            "youtube_trend": {
+                "search_volume_score": 62,
+                "recent_videos_count": 48
+            }
+        },
+        "Rust": {
+            "steam_appid": "252490",
+            "current_ccu": 78900,
+            "youtube_trend": {
+                "search_volume_score": 75,
+                "recent_videos_count": 92
+            }
+        }
+    }
+}

@@ -1,0 +1,9 @@
+.env
+config.py
+*.db
+*.db-wal
+*.db-shm
+.idea/
+__pycache__/
+*.pyc
+.streamlit/
